@@ -1,0 +1,77 @@
+
+/* <1-fold SSSSS RESET E NORMALIZZAZIONE SSSSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* </1-fold> EEEEE RESET E NORMALIZZAZIONE EEEEE */
+
+/* <1-fold SSSSS ALL DOC CLASSES SSSSS */
+.template {
+    display: none;
+}
+.lighter-bike {
+    display: inline-block;
+    background-color: red;
+    padding: 10px;
+    border: 1px solid black;
+}
+.entry {
+    display: inline-block;
+    background-color: red;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* </1-fold> EEEEE ALL DOC CLASSES EEEEE */
+
+
+/* ----------------------- */
+/* ----------------------- */
+/* ----- MEDIA QUERY ----- */
+/* ----------------------- */
+/* ----------------------- */
+
+/* XS */
+@media screen and (min-width: 576px) {
+    /* <1-fold SSSSS HEADER SSSSS */
+
+    /* #2-fold SSSSS region SSSSS */
+
+    /* #/2-fold EEEEE endregion EEEEE */
+
+    /* </1-fold> EEEEE HEADER EEEEE */
+}
+/* SM */
+@media screen and (min-width: 768px) {
+    /* <1-fold SSSSS HEADER SSSSS */
+
+    /* #2-fold SSSSS region SSSSS */
+
+    /* #/2-fold EEEEE endregion EEEEE */
+
+    /* </1-fold> EEEEE HEADER EEEEE */
+}
+/* MD */
+@media screen and (min-width: 992px) {
+    /* <1-fold SSSSS HEADER SSSSS */
+
+    /* #2-fold SSSSS region SSSSS */
+
+    /* #/2-fold EEEEE endregion EEEEE */
+
+    /* </1-fold> EEEEE HEADER EEEEE */
+}
+/* LG */
+@media screen and (min-width: 1200px) {
+    /* <1-fold SSSSS HEADER SSSSS */
+
+    /* #2-fold SSSSS region SSSSS */
+
+    /* #/2-fold EEEEE endregion EEEEE */
+
+    /* </1-fold> EEEEE HEADER EEEEE */
+}
+/* XL */
