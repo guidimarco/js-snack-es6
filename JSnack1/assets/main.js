@@ -1,12 +1,11 @@
-// GLOBAL VAR
-let name = "CANNONDALE SUPERSIX EVO";
-let weight = 8.54;
-
-const bike = { // bike-obj
-    name,
-    weight
+// FUNCTION
+const stamp = (obj) => {
+    // destructuring obj
+    let {name, weight} = obj;
+    console.log(`Bici: ${name}, peso: ${weight}`);
 };
 
+// GLOBAL VAR
 const bicycles = [ // bike-obj-array
     {
         name: "SERIUS VALPAROLA",
@@ -23,85 +22,93 @@ const bicycles = [ // bike-obj-array
     {
         name: "VOTEC VRC",
         weight: 8.90
+    },
+    {
+        name: "CANNONDALE SUPERSIX EVO",
+        weight: 8.54
     }
 ];
+var lighterBike; // lighter-bike-obj
 
-bicycles.push(bike);
-
+console.log(bicycles);
 console.log(
     `
-    *** bicycles-array:
+    *** bicycles-array ***
     ${bicycles[0].name} di peso ${bicycles[0].weight}
     ${bicycles[1].name} di peso ${bicycles[1].weight}
     ${bicycles[2].name} di peso ${bicycles[2].weight}
     ${bicycles[3].name} di peso ${bicycles[3].weight}
     ${bicycles[4].name} di peso ${bicycles[4].weight}
+    *** fine ***
     `
 );
 
-console.log(bicycles);
 
-// ALGORITHM 1.0:
-// const lighterBike = bicycles[searchLighterBike(bicycles)];
+// ******
 
-// console.log(`La bici che pesa meno è la ${lighterBike.name}, che pesa: ${lighterBike.weight}`);
+// ALGORITHM 1.0: for-cycle (ES5-style)
+// define function
+const getLighterBike = (productArray) => {
+    let lessWeight = productArray[0].weight; // first-product-weight
+    let lighterProIndex = 0; // first-product-index
 
-// function searchLighterBike(bicycles) {
-//     let lessWeight = bicycles[0].weight // first bike weight
-//     let lighterBikeIndex = 0; // first bike index
-//
-//     for (let i = 0; i < bicycles.length; i++) {
-//         // CYCLE VAR
-//         let currentBike = bicycles[i]; // current bike obj
-//
-//         // console.log(currentBike.weight);
-//
-//         if (currentBike.weight < lessWeight) {
-//             lighterBikeIndex = i;
-//             lessWeight = currentBike.weight;
-//             // console.log(lighterBikeIndex);
-//             // console.log(lessWeight);
-//         }
-//     }
-//
-//     return lighterBikeIndex;
-// }
-
-// ALGORITHM 2.0: function --> lighter-bike
-const searchLighterBike = (array) => { // find the lighter bike
-    let lessWeight = array[0].weight // first bike weight
-    let lighterBikeIndex = 0; // first bike index
-    let lighterBike;
-
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < productArray.length; i++) {
         // CYCLE VAR
-        let currentBike = array[i]; // current bike obj
+        let currentProduct = bicycles[i]; // current bike obj
 
-        // console.log(currentBike.weight);
-
-        if (currentBike.weight < lessWeight) {
-            lighterBikeIndex = i;
-            lessWeight = currentBike.weight;
-            // console.log(lighterBikeIndex);
-            // console.log(lessWeight);
+        if (currentProduct.weight < lessWeight) {
+            lighterProIndex = i;
+            lessWeight = currentProduct.weight;
         }
     }
 
-    lighterBike = array[lighterBikeIndex];
+    return lighterProIndex;
+}
 
-    return lighterBike;
+lighterBike = bicycles[getLighterBike(bicycles)];
+
+console.log(`
+    *** ALGORITHM 1.0 (with for-cycle) ***
+
+    Bici: ${lighterBike.name}, peso: ${lighterBike.weight}
+
+`);
+
+// ALGORITHM 2.0: for-each instead of for-cycle
+const getLighterBike1 = (productArray) => {
+    let lighterProIndex = 0; // first-product-index
+
+    // cycle for-each obj in the array
+    productArray.forEach((bike, i, bikes) => {
+        if (bike.weight < this) {
+            // the product is lighter than the other checked before
+            // redefine the parameters
+            lighterProIndex = i;
+            lessWeight = bike.weight;
+        }
+    }, productArray[0].weight);
+
+    return lighterProIndex;
 };
 
-const lighterBike = searchLighterBike(bicycles);
-console.log(lighterBike);
+lighterBike = {}; // empty the var
 
+lighterBike = bicycles[getLighterBike(bicycles)]; // redefine with new function
 
+console.log("*** ALGORITHM 2.0 ***");
+stamp(lighterBike); // print-out the lighter bike
 
+// ALGORITHM 3.0: sort
+// create a copy of bicycles
+const copyBicycles = bicycles.map( (bike) => {
+    cloneBike = {...bike}; // clone the bike
+    return cloneBike; // and return-it in the new-array
+});
 
-// <1-fold SSSSS ALL FUNCTION SSSSS
+console.log("Array ordinato in base al peso");
+console.log(copyBicycles);
 
-// #2-fold SSSSS compare the weight of the bike SSSSS
-function compareWeight(a, b) {
+copyBicycles.sort((a, b) => {
     if (a.weight > b.weight) {
         return +1;
     } if (a.weight < b.weight) {
@@ -109,8 +116,13 @@ function compareWeight(a, b) {
     } else {
         return 0;
     }
+})
 
-}
-// #/2-fold EEEEE compare the weight of the bike EEEEE
+lighterBike = {}; // empty the var
 
-// </1-fold> EEEEE ALL FUNCTION EEEEE
+lighterBike = copyBicycles[0];
+
+console.log("*** ALGORITHM 3.0 ***");
+stamp(lighterBike); // print-out the lighter bike
+
+// ******
