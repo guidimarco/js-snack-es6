@@ -9,24 +9,7 @@ const askANumber = (array) => {
     return n;
 };
 
-// function indexFiltrator(x, i) {
-//     if (i >= this[0] && i <= this[1]) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// };
-
-// const indexFiltrator = (array) => {
-//
-//     if (i >= this[0] && i <= this[1]) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-
-// PART 1: define name array
+// PART 1: define names-array
 const names = ["Marco", "Francesca", "Francesco", "Antonio", "Carla", "Alberto"];
 
 console.log(
@@ -63,32 +46,39 @@ userNamesString = userNames.join(" - "); // for stamp the output
 
 console.log(
     `
-    Nomi scelti dall'utente - VERS 1.0:
+    Nomi scelti dall'utente - VERS 1.0 (slice):
     ${userNamesString}.
     `
 );
 
 // 3 VERS 2.0 --> filter
-userNames = [];
+userNames = []; // empty var
+userNamesString = ""; // empty var
 
-userNames = names.filter( (x, i) => {
-    if (i >= userNumbers[0] && i <= userNumbers[1]) {
-        return true;
+// new function --> return "true" if index is "correct"
+const hasCorrectIndex = (i, indexArray) => {
+    if (i >= indexArray[0] && i <= indexArray[1]) {
+       return true;
     } else {
-        return false;
+       return false;
     }
-}, userNumbers);
+};
+
+userNames = names.filter( (x, i) => hasCorrectIndex(i, userNumbers) );
+
 userNamesString = userNames.join(" - "); // for stamp the output
 
 console.log(
     `
-    Nomi scelti dall'utente - VERS 2.0:
+    Nomi scelti dall'utente - VERS 2.0 (filter):
     ${userNamesString}.
     `
 );
 
 // 3 VERS 3.0 --> cycle
-userNames = [];
+userNames = []; // empty var
+userNamesString = ""; // empty var
+
 for (let i = userNumbers[0]; i <= userNumbers[1]; i++) {
     userNames.push(names[i]);
 }
@@ -96,7 +86,26 @@ userNamesString = userNames.join(" - "); // for stamp the output
 
 console.log(
     `
-    Nomi scelti dall'utente - VERS 3.0:
+    Nomi scelti dall'utente - VERS 3.0 (for-cycle):
+    ${userNamesString}.
+    `
+);
+
+// 3 VERS 4.0 --> for-each cycle
+userNames = []; // empty var
+userNamesString = ""; // empty var
+
+names.forEach((name, i) => {
+    if (hasCorrectIndex(i, userNumbers)) {
+        userNames.push(name);
+    }
+});
+
+userNamesString = userNames.join(" - "); // for stamp the output
+
+console.log(
+    `
+    Nomi scelti dall'utente - VERS 4.0 (for-each):
     ${userNamesString}.
     `
 );
